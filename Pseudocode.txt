@@ -1,0 +1,78 @@
+BEGIN
+    IMPORT random library
+
+    FUNCTION against_computer:
+        PROMPT user to input player name
+        FUNCTION selection:
+            CREATE list ["Rock", "Paper", "Scissor"]
+            RETURN random choice from the list
+        
+        FUNCTION rule(player_choice, computer_choice):
+            IF player_choice is Rock AND computer_choice is Scissor THEN
+                PRINT player wins
+            ELSE IF player_choice is Rock AND computer_choice is Paper THEN
+                PRINT computer wins
+            ELSE IF player_choice is Scissor AND computer_choice is Paper THEN
+                PRINT player wins
+            ELSE IF player_choice is Scissor AND computer_choice is Rock THEN
+                PRINT computer wins
+            ELSE IF player_choice is Paper AND computer_choice is Rock THEN
+                PRINT player wins
+            ELSE IF player_choice is Paper AND computer_choice is Scissor THEN
+                PRINT computer wins
+            ELSE IF player_choice is not 1, 2, or 3 THEN
+                PRINT invalid choice message
+            ELSE
+                PRINT it's a draw
+
+        WHILE TRUE:
+            PROMPT user to enter choice (1 for Rock, 2 for Scissor, 3 for Paper)
+            CALL selection function and store result in computer_choice
+            CALL rule function with player choice and computer choice
+            PROMPT user to enter '/' to play again or any other key to exit
+            IF user doesn't enter '/' THEN
+                PRINT "Game Over"
+                EXIT loop
+
+    FUNCTION against_friend:
+        PROMPT Player1 to input their name
+        PROMPT Player2 to input their name
+        PRINT welcome message with Player1 and Player2 names
+
+        FUNCTION rule(c1, c2):
+            IF c1 is Rock AND c2 is Scissor THEN
+                PRINT Player1 wins
+            ELSE IF c2 is Rock AND c1 is Scissor THEN
+                PRINT Player2 wins
+            ELSE IF c1 is Scissor AND c2 is Paper THEN
+                PRINT Player1 wins
+            ELSE IF c2 is Scissor AND c1 is Paper THEN
+                PRINT Player2 wins
+            ELSE IF c1 is Paper AND c2 is Rock THEN
+                PRINT Player1 wins
+            ELSE IF c2 is Paper AND c1 is Rock THEN
+                PRINT Player2 wins
+            ELSE IF c1 or c2 is not 1, 2, or 3 THEN
+                PRINT invalid choice message
+            ELSE
+                PRINT it's a draw
+
+        WHILE TRUE:
+            PROMPT Player1 to enter their choice (1 for Rock, 2 for Scissor, 3 for Paper)
+            PROMPT Player2 to enter their choice (1 for Rock, 2 for Scissor, 3 for Paper)
+            CALL rule function with both players' choices
+            PROMPT user to enter '/' to play again or any other key to exit
+            IF user doesn't enter '/' THEN
+                PRINT "Game Over"
+                EXIT loop
+
+    MAIN:
+        PROMPT user to select game type (against computer or against friend)
+        IF user selects 9 THEN
+            CALL against_computer function
+        ELSE IF user selects 5 THEN
+            CALL against_friend function
+        ELSE
+            PRINT "Enter a valid choice"
+
+END
